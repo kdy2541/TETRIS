@@ -1,3 +1,5 @@
+import ScoreBoard.ScoreBoardWindow;
+import ScoreBoard.ScoreRecord;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +13,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TetrisWindow extends Application {
 
@@ -55,6 +60,19 @@ public class TetrisWindow extends Application {
         exitButton.setFocusTraversable(true);
         이부분 CSS로 동작하게 수정했습니다 0326
         */
+
+        //스코어보드 버튼 동작 설정
+        scoreBoardButton.setOnAction(event -> {
+            // 스코어보드 창을 만들고 표시
+            // ScoreBoardWindow 객체 생성
+            List<ScoreRecord> dummyRecords = new ArrayList<>();
+            dummyRecords.add(new ScoreRecord("Player1", 1000));
+            dummyRecords.add(new ScoreRecord("Player2", 800));
+            dummyRecords.add(new ScoreRecord("Player3", 600));
+            ScoreBoardWindow scoreBoardWindow = new ScoreBoardWindow(dummyRecords);
+
+            scoreBoardWindow.show();
+        });
 
         // 엔터 키로 버튼 선택하기
         gameStartButton.setOnKeyPressed(event -> {
