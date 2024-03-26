@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="768a302f-99ec-4a67-bebb-c803b8e3f4db" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoardWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ScoreBoard/ScoreRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TetrisWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TetrisWindow.java" afterDir="false" />
     </list>
