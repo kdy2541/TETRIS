@@ -253,7 +253,7 @@ public class HelloApplication extends Application {
                     MoveUp(form.d);
                     MoveUp(form.d);
                     form.changeForm();
-                    break;g
+                    break;
                 }
                 if (f == 2 && cB(a, 1, 1) && cB(c, 1, -1) && cB(d, 0, -2)) {
                     MoveUp(form.a);
