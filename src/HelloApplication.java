@@ -20,10 +20,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HelloApplication extends Application {
-    public static final int MOVE = 25;
-    public static final int SIZE = 25;
-    public static int XMAX = SIZE * 10;
-    public static int YMAX = SIZE * 20;
+    public static final int MOVE = 30; //블록 한 칸 이동 너비
+    public static final int SIZE = 30; // 각 칸의 크기 변경
+    public static int XMAX = SIZE * 10; // 보드 너비 변경
+    public static int YMAX = SIZE * 20; // 보드 높이 변경
     public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
     private static Pane group = new Pane();
     private static Form object;
@@ -40,6 +40,8 @@ public class HelloApplication extends Application {
         for (int[] a : MESH) {
             Arrays.fill(a, 0);
         }
+
+        drawGridLines();
 
         Line line = new Line(XMAX, 0, XMAX, YMAX);
         Text scoretext = new Text("Score: ");
@@ -100,6 +102,16 @@ public class HelloApplication extends Application {
         fall.schedule(task, 0, 300);
     }
 
+    private void drawGridLines(){
+        for(int x = 0; x<=XMAX / SIZE; x++){
+            Line line = new Line(x * SIZE, 0, x * SIZE, YMAX);
+            group.getChildren().add(line);
+        }
+        for (int y = 0; y <= YMAX / SIZE; y++) {
+            Line line = new Line(0, y * SIZE, XMAX, y * SIZE);
+            group.getChildren().add(line);
+        }
+    }
     private void moveOnKeyPress(Form form) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -241,7 +253,7 @@ public class HelloApplication extends Application {
                     MoveUp(form.d);
                     MoveUp(form.d);
                     form.changeForm();
-                    break;
+                    break;g
                 }
                 if (f == 2 && cB(a, 1, 1) && cB(c, 1, -1) && cB(d, 0, -2)) {
                     MoveUp(form.a);
