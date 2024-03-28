@@ -1,3 +1,4 @@
+package Tetris;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -563,7 +564,15 @@ public class HelloApplication extends Application {
         return xb && yb && MESH[((int) rect.getX() / SIZE) + x][((int) rect.getY() / SIZE) - y] == 0;
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void startGame(Stage stage) {
+        try {
+            // HelloApplication의 시작 로직을 여기에 배치...
+            Pane root = new Pane(); // 예시 코드, 실제 로직으로 대체 필요
+            Scene scene = new Scene(root, XMAX + 150, YMAX);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

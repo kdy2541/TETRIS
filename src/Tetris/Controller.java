@@ -1,9 +1,9 @@
-
+package Tetris;
 
 import javafx.scene.shape.Rectangle;
 
 public class Controller {
-    // Getting the numbers and the MESH from HelloApplication
+    // Getting the numbers and the MESH from Tetris.HelloApplication
     public static final int MOVE = HelloApplication.MOVE;
     public static final int SIZE = HelloApplication.SIZE;
     public static int XMAX = HelloApplication.XMAX;
