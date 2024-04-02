@@ -9,10 +9,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +23,18 @@ public class HelloApplication extends Application {
     public static final int MOVE = 30; //블록 한 칸 이동 너비
     public static final int SIZE = 30; // 각 칸의 크기 변경
     public static int XMAX = SIZE * 10; // 보드 너비 변경
-    public static int YMAX = SIZE * 20; // 보드 높이 변경
-    public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
+    public static int YMAX = SIZE * 21; // 보드 높이 변경 //보드높이 21로변경(임시:강동연)
+
+    public static double fontSize = SIZE*1.4;//폰트사이즈 추가
+    public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE + 1];//Rectangle과 Text의 xy기준 차이로 인해 y축에 +1로 시점 맞춤: 강동연
     private static Pane group = new Pane();
     private static Form object;
-    private static Scene scene = new Scene(group, XMAX + 150, YMAX);
+    private static Scene scene = new Scene(group, XMAX + 150, YMAX - SIZE);//Mesh 시점 맞추기 임시 y 에 - size
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeRect();
+    private static Form nextObj = Controller.makeText();//makeRect->makeText
+    private static Form waitObj = Controller.waitingTextMake();
     private static int linesNo = 0;
 
     @Override
@@ -45,21 +48,26 @@ public class HelloApplication extends Application {
 
         Line line = new Line(XMAX, 0, XMAX, YMAX);
         Text scoretext = new Text("Score: ");
+        scoretext.setUserData("scoretext");
         scoretext.setStyle("-fx-font: 20 arial;");
         scoretext.setY(50);
         scoretext.setX(XMAX + 5);
-        Text level = new Text("Lines: ");
+        Text level = new Text("Lines: ");//scoretext,level userdata추가
+        level.setUserData("level");
         level.setStyle("-fx-font: 20 arial;");
         level.setY(100);
         level.setX(XMAX + 5);
         level.setFill(Color.GREEN);
-        group.getChildren().addAll(scoretext, line, level);
+
+        Form wait = waitObj;
+
+        group.getChildren().addAll(scoretext, line, level,wait.a,wait.b,wait.c,wait.d);
 
         Form a = nextObj;
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
         moveOnKeyPress(a);
         object = a;
-        nextObj = Controller.makeRect();
+        nextObj = Controller.makeText();
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
         stage.show();
@@ -130,6 +138,9 @@ public class HelloApplication extends Application {
                     case UP:
                         MoveTurn(form);
                         break;
+                    case SPACE:
+                        DirectMoveDown(form);
+                        break;
                 }
             }
         });
@@ -137,10 +148,10 @@ public class HelloApplication extends Application {
 
     private void MoveTurn(Form form) {
         int f = form.form;
-        Rectangle a = form.a;
-        Rectangle b = form.b;
-        Rectangle c = form.c;
-        Rectangle d = form.d;
+        Text a = form.a;
+        Text b = form.b;
+        Text c = form.c;
+        Text d = form.d;//Rectangle - >Text
         switch (form.getName()) {
             case "j":
                 if (f == 1 && cB(a, 1, -1) && cB(c, -1, -1) && cB(d, -2, -2)) {
@@ -424,9 +435,9 @@ public class HelloApplication extends Application {
     }
 
     private void RemoveRows(Pane pane) {
-        ArrayList<Node> rects = new ArrayList<Node>();
+        ArrayList<Node> texts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
-        ArrayList<Node> newrects = new ArrayList<Node>();
+        ArrayList<Node> newtexts = new ArrayList<Node>();
         int full = 0;
         for (int i = 0; i < MESH[0].length; i++) {
             for (int j = 0; j < MESH.length; j++) {
@@ -441,80 +452,85 @@ public class HelloApplication extends Application {
         if (lines.size() > 0)
             do {
                 for (Node node : pane.getChildren()) {
-                    if (node instanceof Rectangle)
-                        rects.add(node);
+                    if(node.getUserData()=="scoretext"||node.getUserData()=="level"||
+                        node.getUserData()=="waita"||node.getUserData()=="waitb"||
+                        node.getUserData()=="waitc"||node.getUserData()=="waitd")//예외설정
+                        continue;
+                    if (node instanceof Text)
+                        texts.add(node);
                 }
                 score += 50;
                 linesNo++;
 
-                for (Node node : rects) {
-                    Rectangle a = (Rectangle) node;
+                for (Node node : texts) {
+                    Text a = (Text) node;
                     if (a.getY() == lines.get(0) * SIZE) {
                         MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
                         pane.getChildren().remove(node);
                     } else
-                        newrects.add(node);
+                        newtexts.add(node);
                 }
 
-                for (Node node : newrects) {
-                    Rectangle a = (Rectangle) node;
+                for (Node node : newtexts) {
+                    Text a = (Text) node;
                     if (a.getY() < lines.get(0) * SIZE) {
                         MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
                         a.setY(a.getY() + SIZE);
-                    }
+                    }//try-catch삭제
                 }
                 lines.remove(0);
-                rects.clear();
-                newrects.clear();
+                texts.clear();
+                newtexts.clear();
                 for (Node node : pane.getChildren()) {
-                    if (node instanceof Rectangle)
-                        rects.add(node);
+                    if (node instanceof Text)
+                        texts.add(node);
                 }
-                for (Node node : rects) {
-                    Rectangle a = (Rectangle) node;
+                for (Node node : texts) {
+                    Text a = (Text) node;
                     try {
                         MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 1;
                     } catch (ArrayIndexOutOfBoundsException e) {
                     }
                 }
-                rects.clear();
-            } while (lines.size() > 0);
+                texts.clear();
+            } while (lines.size() > 0);//size->0
     }
 
-    private void MoveDown(Rectangle rect) {
-        if (rect.getY() + MOVE < YMAX)
-            rect.setY(rect.getY() + MOVE);
+    private void MoveDown(Text text) {
+        if (text.getY() + MOVE < YMAX)
+            text.setY(text.getY() + MOVE);
 
     }
 
-    private void MoveRight(Rectangle rect) {
-        if (rect.getX() + MOVE <= XMAX - SIZE)
-            rect.setX(rect.getX() + MOVE);
+    private void MoveRight(Text text) {
+        if (text.getX() + MOVE <= XMAX - SIZE)
+            text.setX(text.getX() + MOVE);
     }
 
-    private void MoveLeft(Rectangle rect) {
-        if (rect.getX() - MOVE >= 0)
-            rect.setX(rect.getX() - MOVE);
+    private void MoveLeft(Text text) {
+        if (text.getX() - MOVE >= 0)
+            text.setX(text.getX() - MOVE);
     }
 
-    private void MoveUp(Rectangle rect) {
-        if (rect.getY() - MOVE > 0)
-            rect.setY(rect.getY() - MOVE);
-    }
+    private void MoveUp(Text text) {
+        if (text.getY() - MOVE > 0)
+            text.setY(text.getY() - MOVE);
+    }//move명령어들 Text로 변경
 
     private void MoveDown(Form form) {
         if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
-                || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
+                || form.d.getY() == YMAX - SIZE|| moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
             MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
             MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
             MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
             MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
             RemoveRows(group);
 
-            Form a = nextObj;
-            nextObj = Controller.makeRect();
+            Form a = Controller.makeText(waitObj.getName());
+            group.getChildren().removeAll(waitObj.a,waitObj.b,waitObj.c,waitObj.d);
+            waitObj = Controller.waitingTextMake();
             object = a;
-            group.getChildren().addAll(a.a, a.b, a.c, a.d);
+            group.getChildren().addAll(a.a, a.b, a.c, a.d, waitObj.a, waitObj.b, waitObj.c, waitObj.d);
             moveOnKeyPress(a);
         }
 
@@ -532,36 +548,42 @@ public class HelloApplication extends Application {
             }
         }
     }
+    private void DirectMoveDown(Form form){
+        while(!(form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
+                || form.d.getY() == YMAX - SIZE|| moveA(form) || moveB(form) || moveC(form) || moveD(form))){
+           MoveDown(form);
+        }
+    }
 
     private boolean moveA(Form form) {
-        return (MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) + 1] == 1);
+        return (MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) +1] == 1);
     }
 
     private boolean moveB(Form form) {
-        return (MESH[(int) form.b.getX() / SIZE][((int) form.b.getY() / SIZE) + 1] == 1);
+        return (MESH[(int) form.b.getX() / SIZE][((int) form.b.getY() / SIZE) +1] == 1);
     }
 
     private boolean moveC(Form form) {
-        return (MESH[(int) form.c.getX() / SIZE][((int) form.c.getY() / SIZE) + 1] == 1);
+        return (MESH[(int) form.c.getX() / SIZE][((int) form.c.getY() / SIZE) +1] == 1);
     }
 
     private boolean moveD(Form form) {
-        return (MESH[(int) form.d.getX() / SIZE][((int) form.d.getY() / SIZE) + 1] == 1);
+        return (MESH[(int) form.d.getX() / SIZE][((int) form.d.getY() / SIZE) +1] == 1);
     }
 
-    private boolean cB(Rectangle rect, int x, int y) {
+    private boolean cB(Text text, int x, int y) {
         boolean xb = false;
         boolean yb = false;
         if (x >= 0)
-            xb = rect.getX() + x * MOVE <= XMAX - SIZE;
+            xb = text.getX() + x * MOVE <= XMAX - SIZE;
         if (x < 0)
-            xb = rect.getX() + x * MOVE >= 0;
+            xb = text.getX() + x * MOVE >= 0;
         if (y >= 0)
-            yb = rect.getY() - y * MOVE > 0;
+            yb = text.getY() - y * MOVE > 0;
         if (y < 0)
-            yb = rect.getY() + y * MOVE < YMAX;
-        return xb && yb && MESH[((int) rect.getX() / SIZE) + x][((int) rect.getY() / SIZE) - y] == 0;
-    }
+            yb = text.getY() + y * MOVE < YMAX;
+        return xb && yb && MESH[((int) text.getX() / SIZE) + x][((int) text.getY() / SIZE) - y] == 0;
+    }//Text로 변경
 
     public static void main(String[] args) {
         launch();
