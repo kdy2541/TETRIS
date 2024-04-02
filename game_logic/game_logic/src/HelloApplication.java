@@ -1,6 +1,6 @@
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,8 +16,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HelloApplication extends Application {
     public static final int MOVE = 30; //블록 한 칸 이동 너비
@@ -35,6 +33,8 @@ public class HelloApplication extends Application {
     private static boolean game = true;
     private static Form nextObj = Controller.makeText();//makeRect->makeText
     private static int linesNo = 0;
+    private long Frame = 1000000000;
+    private static int scoreMultiplier = 1;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -68,44 +68,43 @@ public class HelloApplication extends Application {
         stage.setTitle("T E T R I S");
         stage.show();
 
-        Timer fall = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0
-                                || object.d.getY() == 0)
-                            top++;
-                        else
-                            top = 0;
+        AnimationTimer timer = new AnimationTimer() {
+            private long lastUpdate = 0;
 
-                        if (top == 2) {
-                            // GAME OVER
-                            Text over = new Text("GAME OVER");
-                            over.setFill(Color.RED);
-                            over.setStyle("-fx-font: 70 arial;");
-                            over.setY(250);
-                            over.setX(10);
-                            group.getChildren().add(over);
-                            game = false;
-                        }
-                        // Exit
-                        if (top == 15) {
-                            System.exit(0);
-                        }
+            @Override
+            public void handle(long now) {
+                if (now - lastUpdate >= Frame) { // 1초마다 실행
+                    lastUpdate = now;
 
-                        if (game) {
-                            if (MoveDown(object)) { // 여기서 MoveDown이 true를 반환하면 블록이 이동했다는 의미입니다.
-                                score++; // 따라서 점수를 1점 증가시킵니다.
-                                scoretext.setText("Score: " + score); // 변경된 점수를 화면에 업데이트합니다.
-                                level.setText("Lines: " + linesNo);
-                            }
-                        }
+                    if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0 || object.d.getY() == 0)
+                        top++;
+                    else
+                        top = 0;
+
+                    if (top == 2) {
+                        // GAME OVER
+                        Text over = new Text("GAME OVER");
+                        over.setFill(Color.RED);
+                        over.setStyle("-fx-font: 70 arial;");
+                        over.setY(250);
+                        over.setX(10);
+                        group.getChildren().add(over);
+                        game = false;
                     }
-                });
+                    // Exit
+                    if (top == 15) {
+                        System.exit(0);
+                    }
+
+                    if (game) {
+                        MoveDown(object);
+                        scoretext.setText("Score: " + Integer.toString(score));
+                        level.setText("Lines: " + Integer.toString(linesNo));
+                    }
+                }
             }
         };
-        fall.schedule(task, 0, 1000);
+        timer.start();
     }
 
     private void drawGridLines(){
@@ -128,7 +127,7 @@ public class HelloApplication extends Application {
                         break;
                     case DOWN:
                         MoveDown(form);
-                        score++;
+                        score += scoreMultiplier;
                         break;
                     case LEFT:
                         Controller.MoveLeft(form);
@@ -452,7 +451,11 @@ public class HelloApplication extends Application {
                     if (node instanceof Text)
                         texts.add(node);
                 }
-                score += 50;
+                if(Frame > 150000000){
+                    Frame -= 50000000;
+                    scoreMultiplier ++;
+                }
+                score += 50 * scoreMultiplier;
                 linesNo++;
 
                 for (Node node : texts) {
@@ -519,6 +522,7 @@ public class HelloApplication extends Application {
             form.c.setY(form.c.getY() + MOVE);
             form.d.setY(form.d.getY() + MOVE);
             moved = true; // 실제로 이동했으므로 true로 설정
+            score += scoreMultiplier;
         }
 
         if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
