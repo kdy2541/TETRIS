@@ -1,24 +1,25 @@
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
+import javafx.scene.text.Text;
 
 public class Form {
-    Rectangle a;
-    Rectangle b;
-    Rectangle c;
-    Rectangle d;
+    Text a;
+    Text b;
+    Text c;
+    Text d;
     Color color;
     private String name;
     public int form = 1;
 
-    public Form(Rectangle a, Rectangle b, Rectangle c, Rectangle d) {
+    public Form(Text a, Text b, Text c, Text d) {//텍스트로변경
         this.a = a;
         this.b = b;
         this.c = c;
         this.d = d;
     }
 
-    public Form(Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name) {
+    public Form(Text a, Text b, Text c, Text d, String name) {//텍스트로변경
         this.a = a;
         this.b = b;
         this.c = c;
