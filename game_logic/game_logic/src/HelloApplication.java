@@ -105,7 +105,7 @@ public class HelloApplication extends Application {
                 });
             }
         };
-        fall.schedule(task, 0, 300);
+        fall.schedule(task, 0, 1000);
     }
 
     private void drawGridLines(){
