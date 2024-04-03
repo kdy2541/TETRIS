@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/game_logic.iml" filepath="$PROJECT_DIR$/game_logic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game_logic/game_logic1.iml" filepath="$PROJECT_DIR$/game_logic/game_logic1.iml" />
+    </modules>
+  </component>
+</project>

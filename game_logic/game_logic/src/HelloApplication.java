@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeText();//makeRect->makeText
+    private static Form nextObj = Controller.makeText(false);//makeRect->makeText
     private static int linesNo = 0;
 
     @Override
@@ -63,7 +63,7 @@ public class HelloApplication extends Application {
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
         moveOnKeyPress(a);
         object = a;
-        nextObj = Controller.makeText();
+        nextObj = Controller.makeText(false);//색맹 모드가 아님을 의미
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
         stage.show();
@@ -109,10 +109,12 @@ public class HelloApplication extends Application {
     private void drawGridLines(){
         for(int x = 0; x<=XMAX / SIZE; x++){
             Line line = new Line(x * SIZE, 0, x * SIZE, YMAX);
+            line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
         }
         for (int y = 0; y <= YMAX / SIZE; y++) {
             Line line = new Line(0, y * SIZE, XMAX, y * SIZE);
+            line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
         }
     }
@@ -518,7 +520,7 @@ public class HelloApplication extends Application {
             RemoveRows(group);
 
             Form a = nextObj;
-            nextObj = Controller.makeText();
+            nextObj = Controller.makeText(false);
             object = a;
             group.getChildren().addAll(a.a, a.b, a.c, a.d);
             moveOnKeyPress(a);
