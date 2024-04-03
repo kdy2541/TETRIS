@@ -80,8 +80,14 @@ public class SettingsWindow extends Stage {
         for (Button button : buttons) {
             button.setOnAction(event -> handleButtonClick(event));
             button.setFocusTraversable(true); // 포커스 가능하게 설정
+            button.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    handleButtonClick(new ActionEvent(button, button));
+                }
+            });
             buttonBox.getChildren().add(button);
         }
+
 
         // 초기 포커스 설정
         keySettingsButton.requestFocus();
@@ -143,8 +149,6 @@ public class SettingsWindow extends Stage {
             }
         });
     }
-
-
 
     private void resetSettings() {
         // 색맹 모드 초기화

@@ -4,8 +4,11 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -123,6 +126,17 @@ public class TetrisWindow extends Application {
 
         Scene scene = new Scene(root, 800, 600);
 
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() != KeyCode.UP && event.getCode() != KeyCode.DOWN && event.getCode() != KeyCode.ENTER) {
+                // 방향키 또는 엔터키가 아닌 키를 입력한 경우 알림창 띄우기
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("키 입력 안내");
+                alert.setHeaderText(null);
+                alert.setContentText("이동은 방향키 위/아래, 선택은 엔터키입니다!");
+                alert.showAndWait();
+            }
+        });
+
         // Css파일 로드
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
@@ -139,7 +153,9 @@ public class TetrisWindow extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
+
 
     public static void main(String[] args) {
         launch(args);

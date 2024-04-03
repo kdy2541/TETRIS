@@ -11,6 +11,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,20 +118,16 @@ public class HelloApplication extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case RIGHT:
-                        Controller.MoveRight(form);
-                        break;
-                    case DOWN:
-                        MoveDown(form);
-                        score++;
-                        break;
-                    case LEFT:
-                        Controller.MoveLeft(form);
-                        break;
-                    case UP:
-                        MoveTurn(form);
-                        break;
+                String pressedKey = event.getCode().toString();
+                if (pressedKey.equals(KeySettings.getRightKey())) {
+                    Controller.MoveRight(form);
+                } else if (pressedKey.equals(KeySettings.getDownKey())) {
+                    MoveDown(form);
+                    score++;
+                } else if (pressedKey.equals(KeySettings.getLeftKey())) {
+                    Controller.MoveLeft(form);
+                } else if (pressedKey.equals(KeySettings.getUpKey())) {
+                    MoveTurn(form);
                 }
             }
         });
