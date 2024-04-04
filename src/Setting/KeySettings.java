@@ -1,3 +1,5 @@
+package Setting;
+
 public class KeySettings {
     private static String rightKey = "RIGHT";
     private static String downKey = "DOWN";

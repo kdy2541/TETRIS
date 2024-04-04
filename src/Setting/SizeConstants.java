@@ -1,3 +1,5 @@
+package Setting;
+
 public class SizeConstants {
     // 450 x 600 (기본값)
     public static final int MOVE_450x600 = 30;

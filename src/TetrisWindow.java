@@ -1,5 +1,6 @@
 import ScoreBoard.ScoreBoardWindow;
 import ScoreBoard.ScoreRecord;
+import Setting.SettingsWindow;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,9 +17,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +139,7 @@ public class TetrisWindow extends Application {
         });
 
         // Css파일 로드
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("resource/styles.css").toExternalForm());
 
         // 각 버튼에 CSS 적용
         gameStartButton.getStyleClass().add("button");

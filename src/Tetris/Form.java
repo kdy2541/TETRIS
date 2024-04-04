@@ -1,11 +1,13 @@
+package Tetris;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class Form {
-    Text a;
-    Text b;
-    Text c;
-    Text d;
+    public Text a;
+    public Text b;
+    public Text c;
+    public Text d;
     Color color;
     private String name;
     public int form = 1;

@@ -1,5 +1,6 @@
+package Tetris;
 
-
+import Setting.SizeConstants;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 

@@ -1,3 +1,7 @@
+import Setting.KeySettings;
+import Setting.SizeConstants;
+import Tetris.Controller;
+import Tetris.Form;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -11,7 +15,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
