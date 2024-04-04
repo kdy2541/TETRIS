@@ -1,4 +1,3 @@
-
 package Tetris;
 
 import Setting.SizeConstants;
@@ -47,11 +46,12 @@ public class Controller {
         }
     }
 
-    public static Form makeText() {
+
+    public static Form makeText(boolean colorBlindMode) {
         int block = (int) (Math.random() * 100);
         String name;
-        Text a = new Text(0,0,"X"), b = new Text(0,0,"X"), c = new Text(0,0,"X"),
-                d = new Text(0,0,"X");//Rectangle --> Text
+        Text a = new Text(0, 0, "X"), b = new Text(0, 0, "X"), c = new Text(0, 0, "X"),
+                d = new Text(0, 0, "X");//Rectangle --> Text
         a.setFont(Font.font(fontSize));
         b.setFont(Font.font(fontSize));
         c.setFont(Font.font(fontSize));
@@ -112,8 +112,101 @@ public class Controller {
             d.setX(XMAX / 2 + SIZE);
             name = "i";
         }
-        return new Form(a, b, c, d, name);
+
+        if (colorBlindMode) {
+            // 각 블록에 대해 다른 색상 지정
+            switch (name) {
+                case "j":
+                    a.setFill(Color.RED);
+                    b.setFill(Color.RED);
+                    c.setFill(Color.RED);
+                    d.setFill(Color.RED);
+                    break;
+                case "l":
+                    a.setFill(Color.GREEN);
+                    b.setFill(Color.GREEN);
+                    c.setFill(Color.GREEN);
+                    d.setFill(Color.GREEN);
+                    break;
+                case "o":
+                    a.setFill(Color.BLUE);
+                    b.setFill(Color.BLUE);
+                    c.setFill(Color.BLUE);
+                    d.setFill(Color.BLUE);
+                    break;
+                case "s":
+                    a.setFill(Color.ORANGE);
+                    b.setFill(Color.ORANGE);
+                    c.setFill(Color.ORANGE);
+                    d.setFill(Color.ORANGE);
+                    break;
+                case "t":
+                    a.setFill(Color.PURPLE);
+                    b.setFill(Color.PURPLE);
+                    c.setFill(Color.PURPLE);
+                    d.setFill(Color.PURPLE);
+                    break;
+                case "z":
+                    a.setFill(Color.YELLOW);
+                    b.setFill(Color.YELLOW);
+                    c.setFill(Color.YELLOW);
+                    d.setFill(Color.YELLOW);
+                    break;
+                case "i":
+                    a.setFill(Color.BLACK);
+                    b.setFill(Color.BLACK);
+                    c.setFill(Color.BLACK);
+                    d.setFill(Color.BLACK);
+                    break;
+            }
+        } else {
+            // 일반 모드인 경우 기존 색상 사용
+            switch (name) {
+                case "j":
+                    a.setFill(Color.SLATEGRAY);
+                    b.setFill(Color.SLATEGRAY);
+                    c.setFill(Color.SLATEGRAY);
+                    d.setFill(Color.SLATEGRAY);
+                    break;
+                case "l":
+                    a.setFill(Color.DARKGOLDENROD);
+                    b.setFill(Color.DARKGOLDENROD);
+                    c.setFill(Color.DARKGOLDENROD);
+                    d.setFill(Color.DARKGOLDENROD);
+                    break;
+                case "o":
+                    a.setFill(Color.INDIANRED);
+                    b.setFill(Color.INDIANRED);
+                    c.setFill(Color.INDIANRED);
+                    d.setFill(Color.INDIANRED);
+                    break;
+                case "s":
+                    a.setFill(Color.FORESTGREEN);
+                    b.setFill(Color.FORESTGREEN);
+                    c.setFill(Color.FORESTGREEN);
+                    d.setFill(Color.FORESTGREEN);
+                    break;
+                case "t":
+                    a.setFill(Color.CADETBLUE);
+                    b.setFill(Color.CADETBLUE);
+                    c.setFill(Color.CADETBLUE);
+                    d.setFill(Color.CADETBLUE);
+                    break;
+                case "z":
+                    a.setFill(Color.HOTPINK);
+                    b.setFill(Color.HOTPINK);
+                    c.setFill(Color.HOTPINK);
+                    d.setFill(Color.HOTPINK);
+                    break;
+                case "i":
+                    a.setFill(Color.SANDYBROWN);
+                    b.setFill(Color.SANDYBROWN);
+                    c.setFill(Color.SANDYBROWN);
+                    d.setFill(Color.SANDYBROWN);
+                    break;
+            }
+        }
+
+        return new Form(a, b, c, d, name, colorBlindMode);
     }
-
-
 }
