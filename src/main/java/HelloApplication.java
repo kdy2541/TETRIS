@@ -1,4 +1,5 @@
 
+import ScoreBoard.ScoreboardConnector;
 import Setting.SizeConstants;
 import Tetris.Controller;
 import Tetris.Form;
@@ -33,10 +34,12 @@ public class HelloApplication extends Application {
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeText(false);//makeRect->makeText
+    private static Form nextObj = Controller.makeText(true);//makeRect->makeText
     private static int linesNo = 0;
     private long Frame = 1000000000;
     private static int scoreMultiplier = 1;
+
+    private ScoreboardConnector scoreboardDataInserter;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -65,7 +68,7 @@ public class HelloApplication extends Application {
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
         moveOnKeyPress(a);
         object = a;
-        nextObj = Controller.makeText(false);//색맹 모드가 아님을 의미
+        nextObj = Controller.makeText(true);//색맹 모드가 아님을 의미
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
         stage.show();
@@ -91,6 +94,7 @@ public class HelloApplication extends Application {
                         over.setY(250);
                         over.setX(10);
                         group.getChildren().add(over);
+                        ScoreboardConnector.insertData("홍길동",score,"00:00:00",linesNo);
                         game = false;
                     }
                     // Exit
@@ -539,7 +543,7 @@ public class HelloApplication extends Application {
             RemoveRows(group);
             // 새 블록 생성
             Form a = nextObj;
-            nextObj = Controller.makeText(false);
+            nextObj = Controller.makeText(true);
             object = a;
             group.getChildren().addAll(a.a, a.b, a.c, a.d);
             moveOnKeyPress(a);
