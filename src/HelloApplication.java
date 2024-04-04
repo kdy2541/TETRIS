@@ -1,4 +1,5 @@
 
+import Setting.SizeConstants;
 import Tetris.Controller;
 import Tetris.Form;
 import javafx.animation.AnimationTimer;
@@ -19,15 +20,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HelloApplication extends Application {
-    public static final int MOVE = 30; //블록 한 칸 이동 너비
-    public static final int SIZE = 30; // 각 칸의 크기 변경
-    public static int XMAX = SIZE * 10; // 보드 너비 변경
-    public static int YMAX = SIZE * 21; // 보드 높이 변경 //보드높이 21로변경(임시:강동연)
-
-    public static double fontSize = SIZE*1.4;//폰트사이즈 추가
-    public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE + 1];//Rectangle과 Text의 xy기준 차이로 인해 y축에 +1로 시점 맞춤: 강동연
+    public static final int MOVE = SizeConstants.MOVE;
+    public static final int SIZE = SizeConstants.SIZE;
+    public static int XMAX = SizeConstants.XMAX;
+    public static int YMAX = SizeConstants.YMAX;
+    public static double fontSize = SizeConstants.fontSize;
+    public static int[][] MESH = SizeConstants.MESH;
     private static Pane group = new Pane();
     private static Form object;
+
     private static Scene scene = new Scene(group, XMAX + 150, YMAX - SIZE);//Mesh 시점 맞추기 임시 y 에 - size
     public static int score = 0;
     private static int top = 0;
