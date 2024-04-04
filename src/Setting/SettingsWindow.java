@@ -12,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class SettingsWindow extends Stage {
 
     private ToggleButton colorBlindModeToggle;
@@ -49,6 +50,7 @@ public class SettingsWindow extends Stage {
         resizePanel.setHgap(10);
         Label resizeLabel = new Label("화면 크기 조절");
         resizeMenuButton = new MenuButton();
+
         resizeMenuButton.setFocusTraversable(false); // 포커스 가능 여부 설정
         MenuItem item1 = new MenuItem("450 x 600");
         item1.setOnAction(event -> {
@@ -67,6 +69,7 @@ public class SettingsWindow extends Stage {
         });
         resizeMenuButton.getItems().addAll(item1, item2, item3);
         resizeMenuButton.setText("450 x 600"); // 기본값 "450 x 600"로 설정
+
 
         resizePanel.getChildren().addAll(resizeLabel, resizeMenuButton);
 
@@ -159,9 +162,9 @@ public class SettingsWindow extends Stage {
         colorBlindModeToggle.setText("off");
 
         // 화면 크기 초기화
+
         resizeMenuButton.setText("450 x 600");
         SizeConstants.setSize(450, 600);
-
         // 다른 설정들도 초기화하는 코드 추가
         System.out.println("기본 설정으로 되돌림");
     }
