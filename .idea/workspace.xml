@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="768a302f-99ec-4a67-bebb-c803b8e3f4db" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resource/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resource/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,7 @@
       <updated>1711097365945</updated>
       <workItem from="1711097367264" duration="522000" />
       <workItem from="1712233717237" duration="725000" />
-      <workItem from="1712253163675" duration="419000" />
+      <workItem from="1712253163675" duration="825000" />
     </task>
     <servers />
   </component>
