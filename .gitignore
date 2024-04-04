@@ -31,3 +31,13 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Gradle 관련
+.gradle/
+build/
+
+# IntelliJ IDEA 관련
+.idea/
+*.iml
+*.ipr
+*.iws
