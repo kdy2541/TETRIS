@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="768a302f-99ec-4a67-bebb-c803b8e3f4db" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris/Form.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeySettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setting/KeySettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SettingsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setting/SettingsWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SizeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setting/SizeConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tetris.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TetrisWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TetrisWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +56,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.HelloApplication" />
         <item itemvalue="애플리케이션.TetrisWindow" />
+        <item itemvalue="애플리케이션.HelloApplication" />
         <item itemvalue="애플리케이션.Tetris" />
         <item itemvalue="애플리케이션.HelloApplication" />
       </list>
