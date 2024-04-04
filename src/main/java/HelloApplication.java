@@ -1,4 +1,5 @@
 
+import ScoreBoard.ScoreboardDataInserter;
 import Setting.SizeConstants;
 import Tetris.Controller;
 import Tetris.Form;
@@ -37,6 +38,8 @@ public class HelloApplication extends Application {
     private static int linesNo = 0;
     private long Frame = 1000000000;
     private static int scoreMultiplier = 1;
+
+    private ScoreboardDataInserter scoreboardDataInserter;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -91,6 +94,7 @@ public class HelloApplication extends Application {
                         over.setY(250);
                         over.setX(10);
                         group.getChildren().add(over);
+                        ScoreboardDataInserter.insertData("홍길동",score,"00:00:00",linesNo);
                         game = false;
                     }
                     // Exit
