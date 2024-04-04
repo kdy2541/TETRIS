@@ -1,5 +1,8 @@
+
+import ScoreBoard.ScoreBoard;
 import ScoreBoard.ScoreBoardWindow;
 import ScoreBoard.ScoreRecord;
+import ScoreBoard.ScoreboardConnector;
 import Setting.SettingsWindow;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -21,6 +24,8 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class TetrisWindow extends Application {
 
@@ -68,15 +73,12 @@ public class TetrisWindow extends Application {
 
         //스코어보드 버튼 동작 설정
         scoreBoardButton.setOnAction(event -> {
-            // 스코어보드 창을 만들고 표시
-            // ScoreBoardWindow 객체 생성
-            List<ScoreRecord> dummyRecords = new ArrayList<>();
-            dummyRecords.add(new ScoreRecord("Player1", 1000));
-            dummyRecords.add(new ScoreRecord("Player2", 800));
-            dummyRecords.add(new ScoreRecord("Player3", 600));
-            ScoreBoardWindow scoreBoardWindow = new ScoreBoardWindow(dummyRecords);
+            ScoreboardConnector scoreboardConnector;
+            List<ScoreRecord> scoreboardData = ScoreboardConnector.fetchData(1);
+            ScoreBoard scoreBoard = new ScoreBoard(scoreboardData);
+            ScoreBoardWindow window = new ScoreBoardWindow(scoreBoard);
+            window.show();
 
-            scoreBoardWindow.show();
         });
 
         // 엔터 키로 버튼 선택하기
