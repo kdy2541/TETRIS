@@ -18,6 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,7 +140,12 @@ public class TetrisWindow extends Application {
         });
 
         // Css파일 로드
-        scene.getStylesheets().add(getClass().getResource("resource/styles.css").toExternalForm());
+        URL cssFile = getClass().getResource("styles.css");
+        if (cssFile != null) {
+            scene.getStylesheets().add(cssFile.toExternalForm());
+        } else {
+            System.err.println("Could not find styles.css");
+        }
 
         // 각 버튼에 CSS 적용
         gameStartButton.getStyleClass().add("button");
