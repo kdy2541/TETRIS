@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="768a302f-99ec-4a67-bebb-c803b8e3f4db" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TETRIS.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoardWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Setting/KeySettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Setting/SettingsWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Setting/SizeConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tetris/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tetris/Form.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TetrisWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/application.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/styles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,7 +81,14 @@
       <recent name="$PROJECT_DIR$/src/resource" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.TetrisWindow">
+  <component name="RunManager" selected="애플리케이션.TetrisWindow (1)">
+    <configuration name="HelloApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HelloApplication" />
+      <module name="TETRIS.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HelloApplication" />
       <module name="TETRIS" />
@@ -62,6 +103,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TetrisWindow (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TetrisWindow" />
+      <module name="TETRIS.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TetrisWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TetrisWindow" />
       <module name="TETRIS" />
@@ -71,10 +119,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="애플리케이션.HelloApplication (1)" />
+        <item itemvalue="애플리케이션.TetrisWindow (1)" />
         <item itemvalue="애플리케이션.TetrisWindow" />
         <item itemvalue="애플리케이션.HelloApplication" />
-        <item itemvalue="애플리케이션.HelloApplication" />
-        <item itemvalue="애플리케이션.Tetris" />
         <item itemvalue="애플리케이션.HelloApplication" />
       </list>
     </recent_temporary>
@@ -89,6 +137,7 @@
       <updated>1711097365945</updated>
       <workItem from="1711097367264" duration="522000" />
       <workItem from="1712233717237" duration="725000" />
+      <workItem from="1712253163675" duration="219000" />
     </task>
     <servers />
   </component>
