@@ -11,8 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.List;
-
 import static Setting.SizeConstants.*;
 
 
@@ -51,7 +49,7 @@ public class ScoreBoardWindow {
         root.setAlignment(Pos.CENTER); // Aligns VBox contents to the center
         root.getChildren().addAll(new Label("스코어 보드"), table);
 
-        Scene scene = new Scene(root, XMAX + 150, YMAX - SIZE);//Mesh 시점 맞추기 임시 y 에 - size
+        Scene scene = new Scene(root, XMAX + 150, YMAX - SIZE);
         stage.setScene(scene);
     }
 
