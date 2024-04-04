@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeText();//makeRect->makeText
+    private static Form nextObj = Controller.makeText(); //makeRect->makeText
     private static int linesNo = 0;
 
     @Override
@@ -109,10 +109,12 @@ public class HelloApplication extends Application {
     private void drawGridLines(){
         for(int x = 0; x<=XMAX / SIZE; x++){
             Line line = new Line(x * SIZE, 0, x * SIZE, YMAX);
+            line.setStroke(Color.LIGHTGRAY);//격자 회색으로 변경
             group.getChildren().add(line);
         }
         for (int y = 0; y <= YMAX / SIZE; y++) {
             Line line = new Line(0, y * SIZE, XMAX, y * SIZE);
+            line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
         }
     }
