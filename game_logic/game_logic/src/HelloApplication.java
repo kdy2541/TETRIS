@@ -513,7 +513,7 @@ public class HelloApplication extends Application {
     private void MoveUp(Text text) {
         if (text.getY() - MOVE > 0)
             text.setY(text.getY() - MOVE);
-    }//move명령어들 Text로 변경
+    }//move명령어들 Text로 변경함
 
     private boolean MoveDown(Form form) {
         boolean moved = false; // 이동 여부를 추적하는 변수입니다.
