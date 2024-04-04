@@ -11,23 +11,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/HelloApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/HelloApplication$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/HelloApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreBoard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreBoardWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreBoardWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreRecord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ScoreBoard/ScoreboardDataInserter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/TetrisWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/TetrisWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreBoardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreBoardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreboardDataInserter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard/ScoreboardConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,22 +62,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/gugmin-eunhaeng/Documents/GitHub/TETRIS",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gugmin-eunhaeng/Documents/GitHub/TETRIS&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
