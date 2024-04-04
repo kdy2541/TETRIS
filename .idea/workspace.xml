@@ -92,6 +92,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -122,6 +129,7 @@
       <recent name="$PROJECT_DIR$/src/resource" />
     </key>
   </component>
+
   <component name="RunManager" selected="애플리케이션.HelloApplication">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HelloApplication" />
@@ -148,7 +156,9 @@
       <list>
         <item itemvalue="애플리케이션.HelloApplication" />
         <item itemvalue="애플리케이션.TetrisWindow" />
+        <item itemvalue="애플리케이션.HelloApplication" />
         <item itemvalue="애플리케이션.Tetris" />
+        <item itemvalue="애플리케이션.HelloApplication" />
       </list>
     </recent_temporary>
   </component>

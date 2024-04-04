@@ -1,20 +1,18 @@
 package Tetris;
 
-
+import Setting.SizeConstants;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
 
 public class Controller {
     // Getting the numbers and the MESH from HelloApplication
-    public static final int MOVE = HelloApplication.MOVE;
-    public static final int SIZE = HelloApplication.SIZE;
-    public static int XMAX = HelloApplication.XMAX;
-    public static int YMAX = HelloApplication.YMAX;
-    public static double fontSize = HelloApplication.fontSize;
-    public static int[][] MESH = HelloApplication.MESH;
+    public static int MOVE = SizeConstants.MOVE;
+    public static int SIZE = SizeConstants.SIZE;
+    public static int XMAX = SizeConstants.XMAX;
+    public static int YMAX = SizeConstants.YMAX;
+    public static double fontSize = SizeConstants.fontSize;
+    public static int[][] MESH = SizeConstants.MESH;
 
-    public static boolean colorBlindMode = false;
 
     public static void MoveRight(Form form) {
         if (form.a.getX() + MOVE <= XMAX - SIZE && form.b.getX() + MOVE <= XMAX - SIZE
@@ -47,6 +45,7 @@ public class Controller {
             }
         }
     }
+
 
     public static Form makeText(boolean colorBlindMode) {
         int block = (int) (Math.random() * 100);

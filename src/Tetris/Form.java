@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class Form {
+
     public Text a, b, c, d;
     private Color color;
     private String name;
@@ -118,12 +119,14 @@ public class Form {
                     color = Color.SANDYBROWN;
                     break;
             }
+
         }
         this.a.setFill(color);
         this.b.setFill(color);
         this.c.setFill(color);
         this.d.setFill(color);
     }
+
 
     // 색맹 모드 설정 메서드
     public void setColorBlindMode(boolean colorBlindMode) {
@@ -190,4 +193,5 @@ public class Form {
             form = 1;
         }
     }
+
 }

@@ -1,8 +1,9 @@
-
+import Setting.KeySettings;
+import Setting.SizeConstants;
 import Tetris.Controller;
 import Tetris.Form;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,25 +18,24 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HelloApplication extends Application {
-    public static final int MOVE = 30; //블록 한 칸 이동 너비
-    public static final int SIZE = 30; // 각 칸의 크기 변경
-    public static int XMAX = SIZE * 10; // 보드 너비 변경
-    public static int YMAX = SIZE * 21; // 보드 높이 변경 //보드높이 21로변경(임시:강동연)
-
-    public static double fontSize = SIZE*1.4;//폰트사이즈 추가
-    public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE + 1];//Rectangle과 Text의 xy기준 차이로 인해 y축에 +1로 시점 맞춤: 강동연
+    public static final int MOVE = SizeConstants.MOVE;
+    public static final int SIZE = SizeConstants.SIZE;
+    public static int XMAX = SizeConstants.XMAX;
+    public static int YMAX = SizeConstants.YMAX;
+    public static double fontSize = SizeConstants.fontSize;
+    public static int[][] MESH = SizeConstants.MESH;
     private static Pane group = new Pane();
     private static Form object;
     private static Scene scene = new Scene(group, XMAX + 150, YMAX - SIZE);//Mesh 시점 맞추기 임시 y 에 - size
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeText(false);//makeRect->makeText
+    private static Form nextObj = Controller.makeText();//makeRect->makeText
     private static int linesNo = 0;
-    private long Frame = 1000000000;
-    private static int scoreMultiplier = 1;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -64,59 +64,56 @@ public class HelloApplication extends Application {
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
         moveOnKeyPress(a);
         object = a;
-        nextObj = Controller.makeText(false);//색맹 모드가 아님을 의미
+        nextObj = Controller.makeText();
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
         stage.show();
 
-        AnimationTimer timer = new AnimationTimer() {
-            private long lastUpdate = 0;
+        Timer fall = new Timer();
+        TimerTask task = new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0
+                                || object.d.getY() == 0)
+                            top++;
+                        else
+                            top = 0;
 
-            @Override
-            public void handle(long now) {
-                if (now - lastUpdate >= Frame) { // 1초마다 실행
-                    lastUpdate = now;
+                        if (top == 2) {
+                            // GAME OVER
+                            Text over = new Text("GAME OVER");
+                            over.setFill(Color.RED);
+                            over.setStyle("-fx-font: 70 arial;");
+                            over.setY(250);
+                            over.setX(10);
+                            group.getChildren().add(over);
+                            game = false;
+                        }
+                        // Exit
+                        if (top == 15) {
+                            System.exit(0);
+                        }
 
-                    if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0 || object.d.getY() == 0)
-                        top++;
-                    else
-                        top = 0;
-
-                    if (top == 2) {
-                        // GAME OVER
-                        Text over = new Text("GAME OVER");
-                        over.setFill(Color.RED);
-                        over.setStyle("-fx-font: 70 arial;");
-                        over.setY(250);
-                        over.setX(10);
-                        group.getChildren().add(over);
-                        game = false;
+                        if (game) {
+                            MoveDown(object);
+                            scoretext.setText("Score: " + Integer.toString(score));
+                            level.setText("Lines: " + Integer.toString(linesNo));
+                        }
                     }
-                    // Exit
-                    if (top == 15) {
-                        System.exit(0);
-                    }
-
-                    if (game) {
-                        MoveDown(object);
-                        scoretext.setText("Score: " + Integer.toString(score));
-                        level.setText("Lines: " + Integer.toString(linesNo));
-                    }
-                }
+                });
             }
         };
-        timer.start();
+        fall.schedule(task, 0, 300);
     }
 
     private void drawGridLines(){
         for(int x = 0; x<=XMAX / SIZE; x++){
             Line line = new Line(x * SIZE, 0, x * SIZE, YMAX);
-            line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
         }
         for (int y = 0; y <= YMAX / SIZE; y++) {
             Line line = new Line(0, y * SIZE, XMAX, y * SIZE);
-            line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
         }
     }
@@ -124,20 +121,16 @@ public class HelloApplication extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case RIGHT:
-                        Controller.MoveRight(form);
-                        break;
-                    case DOWN:
-                        MoveDown(form);
-                        score += scoreMultiplier;
-                        break;
-                    case LEFT:
-                        Controller.MoveLeft(form);
-                        break;
-                    case UP:
-                        MoveTurn(form);
-                        break;
+                String pressedKey = event.getCode().toString();
+                if (pressedKey.equals(KeySettings.getRightKey())) {
+                    Controller.MoveRight(form);
+                } else if (pressedKey.equals(KeySettings.getDownKey())) {
+                    MoveDown(form);
+                    score++;
+                } else if (pressedKey.equals(KeySettings.getLeftKey())) {
+                    Controller.MoveLeft(form);
+                } else if (pressedKey.equals(KeySettings.getUpKey())) {
+                    MoveTurn(form);
                 }
             }
         });
@@ -454,11 +447,7 @@ public class HelloApplication extends Application {
                     if (node instanceof Text)
                         texts.add(node);
                 }
-                if(Frame > 150000000){
-                    Frame -= 50000000;
-                    scoreMultiplier ++;
-                }
-                score += 50 * scoreMultiplier;
+                score += 50;
                 linesNo++;
 
                 for (Node node : texts) {
@@ -514,37 +503,37 @@ public class HelloApplication extends Application {
     private void MoveUp(Text text) {
         if (text.getY() - MOVE > 0)
             text.setY(text.getY() - MOVE);
-    }//move명령어들 Text로 변경함
+    }//move명령어들 Text로 변경
 
-    private boolean MoveDown(Form form) {
-        boolean moved = false; // 이동 여부를 추적하는 변수입니다.
-        if (form.a.getY() + MOVE < YMAX && form.b.getY() + MOVE < YMAX && form.c.getY() + MOVE < YMAX
-                && form.d.getY() + MOVE < YMAX && !(moveA(form) || moveB(form) || moveC(form) || moveD(form))) {
-            form.a.setY(form.a.getY() + MOVE);
-            form.b.setY(form.b.getY() + MOVE);
-            form.c.setY(form.c.getY() + MOVE);
-            form.d.setY(form.d.getY() + MOVE);
-            moved = true; // 실제로 이동했으므로 true로 설정
-            score += scoreMultiplier;
-        }
-
+    private void MoveDown(Form form) {
         if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
-                || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
-            // 여기서는 블록이 다음 위치로 이동할 수 없으므로, 현재 위치를 고정하고 새로운 블록을 생성합니다.
+                || form.d.getY() == YMAX - SIZE|| moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
             MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
             MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
             MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
             MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
             RemoveRows(group);
-            // 새 블록 생성
+
             Form a = nextObj;
-            nextObj = Controller.makeText(false);
+            nextObj = Controller.makeText();
             object = a;
             group.getChildren().addAll(a.a, a.b, a.c, a.d);
             moveOnKeyPress(a);
-            moved = false; // 이 경우에는 이동하지 않으므로 false
         }
-        return moved; // 이동 여부를 반환
+
+        if (form.a.getY() + MOVE < YMAX && form.b.getY() + MOVE < YMAX && form.c.getY() + MOVE < YMAX
+                && form.d.getY() + MOVE < YMAX) {
+            int movea = MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) + 1];
+            int moveb = MESH[(int) form.b.getX() / SIZE][((int) form.b.getY() / SIZE) + 1];
+            int movec = MESH[(int) form.c.getX() / SIZE][((int) form.c.getY() / SIZE) + 1];
+            int moved = MESH[(int) form.d.getX() / SIZE][((int) form.d.getY() / SIZE) + 1];
+            if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
+                form.a.setY(form.a.getY() + MOVE);
+                form.b.setY(form.b.getY() + MOVE);
+                form.c.setY(form.c.getY() + MOVE);
+                form.d.setY(form.d.getY() + MOVE);
+            }
+        }
     }
 
     private boolean moveA(Form form) {
