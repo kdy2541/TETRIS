@@ -34,7 +34,7 @@ public class HelloApplication extends Application {
     public static int score = 0;
     private static int top = 0;
     private static boolean game = true;
-    private static Form nextObj = Controller.makeText();//makeRect->makeText
+    private static Form nextObj = Controller.makeText(false);//makeRect->makeText
     private static int linesNo = 0;
 
     @Override
@@ -64,7 +64,7 @@ public class HelloApplication extends Application {
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
         moveOnKeyPress(a);
         object = a;
-        nextObj = Controller.makeText();
+        nextObj = Controller.makeText(false);
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
         stage.show();
@@ -515,7 +515,7 @@ public class HelloApplication extends Application {
             RemoveRows(group);
 
             Form a = nextObj;
-            nextObj = Controller.makeText();
+            nextObj = Controller.makeText(false); //static 값으로 설정
             object = a;
             group.getChildren().addAll(a.a, a.b, a.c, a.d);
             moveOnKeyPress(a);
