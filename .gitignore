@@ -1,5 +1,13 @@
-.idea/workspace.xml
-.idea/*
+# Gradle 관련
+.gradle/
+build/
+
+# IntelliJ IDEA 관련
+.idea/
+*.iml
+*.ipr
+*.iws
+
 
 
 ### IntelliJ IDEA ###
