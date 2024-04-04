@@ -1,22 +1,17 @@
 package Setting;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+
 
 public class SettingsWindow extends Stage {
 
@@ -55,20 +50,26 @@ public class SettingsWindow extends Stage {
         resizePanel.setHgap(10);
         Label resizeLabel = new Label("화면 크기 조절");
         resizeMenuButton = new MenuButton();
-        MenuItem item1 = new MenuItem("1");
+
+        resizeMenuButton.setFocusTraversable(false); // 포커스 가능 여부 설정
+        MenuItem item1 = new MenuItem("450 x 600");
         item1.setOnAction(event -> {
-            resizeMenuButton.setText("1");
+            resizeMenuButton.setText("450 x 600");
+            SizeConstants.setSize(450, 600);
         });
-        MenuItem item2 = new MenuItem("2");
+        MenuItem item2 = new MenuItem("300 x 400");
         item2.setOnAction(event -> {
-            resizeMenuButton.setText("2");
+            resizeMenuButton.setText("300 x 400");
+            SizeConstants.setSize(300, 400);
         });
-        MenuItem item3 = new MenuItem("3");
+        MenuItem item3 = new MenuItem("600 x 800");
         item3.setOnAction(event -> {
-            resizeMenuButton.setText("3");
+            resizeMenuButton.setText("600 x 800");
+            SizeConstants.setSize(600, 800);
         });
         resizeMenuButton.getItems().addAll(item1, item2, item3);
-        resizeMenuButton.setText("1"); // 기본값 "1"로 설정
+        resizeMenuButton.setText("450 x 600"); // 기본값 "450 x 600"로 설정
+
 
         resizePanel.getChildren().addAll(resizeLabel, resizeMenuButton);
 
@@ -83,10 +84,25 @@ public class SettingsWindow extends Stage {
 
         for (Button button : buttons) {
             button.setOnAction(event -> handleButtonClick(event));
-            button.setFocusTraversable(false);
-            button.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent;"); // 포커스 제거
+            button.setFocusTraversable(true); // 포커스 가능하게 설정
+            button.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    handleButtonClick(new ActionEvent(button, button));
+                }
+            });
             buttonBox.getChildren().add(button);
         }
+
+
+        // 초기 포커스 설정
+        keySettingsButton.requestFocus();
+
+        backButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                hide();
+                mainWindow.show();
+            }
+        });
 
         root.setCenter(buttonBox);
 
@@ -146,8 +162,9 @@ public class SettingsWindow extends Stage {
         colorBlindModeToggle.setText("off");
 
         // 화면 크기 초기화
-        resizeMenuButton.setText("1");
 
+        resizeMenuButton.setText("450 x 600");
+        SizeConstants.setSize(450, 600);
         // 다른 설정들도 초기화하는 코드 추가
         System.out.println("기본 설정으로 되돌림");
     }

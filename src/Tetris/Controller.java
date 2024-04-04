@@ -1,14 +1,19 @@
+
 package Tetris;
 
-import javafx.scene.shape.Rectangle;
+import Setting.SizeConstants;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Controller {
-    // Getting the numbers and the MESH from Tetris.HelloApplication
-    public static final int MOVE = HelloApplication.MOVE;
-    public static final int SIZE = HelloApplication.SIZE;
-    public static int XMAX = HelloApplication.XMAX;
-    public static int YMAX = HelloApplication.YMAX;
-    public static int[][] MESH = HelloApplication.MESH;
+    // Getting the numbers and the MESH from HelloApplication
+    public static int MOVE = SizeConstants.MOVE;
+    public static int SIZE = SizeConstants.SIZE;
+    public static int XMAX = SizeConstants.XMAX;
+    public static int YMAX = SizeConstants.YMAX;
+    public static double fontSize = SizeConstants.fontSize;
+    public static int[][] MESH = SizeConstants.MESH;
+
 
     public static void MoveRight(Form form) {
         if (form.a.getX() + MOVE <= XMAX - SIZE && form.b.getX() + MOVE <= XMAX - SIZE
@@ -42,11 +47,15 @@ public class Controller {
         }
     }
 
-    public static Form makeRect() {
+    public static Form makeText() {
         int block = (int) (Math.random() * 100);
         String name;
-        Rectangle a = new Rectangle(SIZE-1, SIZE-1), b = new Rectangle(SIZE-1, SIZE-1), c = new Rectangle(SIZE-1, SIZE-1),
-                d = new Rectangle(SIZE-1, SIZE-1);
+        Text a = new Text(0,0,"X"), b = new Text(0,0,"X"), c = new Text(0,0,"X"),
+                d = new Text(0,0,"X");//Rectangle --> Text
+        a.setFont(Font.font(fontSize));
+        b.setFont(Font.font(fontSize));
+        c.setFont(Font.font(fontSize));
+        d.setFont(Font.font(fontSize));//fontsize설정
         if (block < 15) {
             a.setX(XMAX / 2 - SIZE);
             b.setX(XMAX / 2 - SIZE);
@@ -105,4 +114,6 @@ public class Controller {
         }
         return new Form(a, b, c, d, name);
     }
+
+
 }
