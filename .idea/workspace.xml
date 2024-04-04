@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="768a302f-99ec-4a67-bebb-c803b8e3f4db" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TETRIS.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreBoardWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreBoard/ScoreRecord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Setting/KeySettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Setting/SettingsWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Setting/SizeConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tetris/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tetris/Form.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TetrisWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource/application.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TetrisWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resource/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resource/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +65,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/resource" />
     </key>
   </component>
@@ -137,7 +125,7 @@
       <updated>1711097365945</updated>
       <workItem from="1711097367264" duration="522000" />
       <workItem from="1712233717237" duration="725000" />
-      <workItem from="1712253163675" duration="219000" />
+      <workItem from="1712253163675" duration="419000" />
     </task>
     <servers />
   </component>

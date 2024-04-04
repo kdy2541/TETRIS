@@ -140,11 +140,11 @@ public class TetrisWindow extends Application {
         });
 
         // Css파일 로드
-        URL cssFile = getClass().getResource("resource/styles.css");
+        URL cssFile = getClass().getResource("styles.css");
         if (cssFile != null) {
             scene.getStylesheets().add(cssFile.toExternalForm());
         } else {
-            System.err.println("Could not find resource/styles.css");
+            System.err.println("Could not find styles.css");
         }
 
         // 각 버튼에 CSS 적용
