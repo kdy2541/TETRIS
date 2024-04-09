@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//1234
 public class HelloApplication extends Application {
     public static final int MOVE = SizeConstants.MOVE;
     public static final int SIZE = SizeConstants.SIZE;
