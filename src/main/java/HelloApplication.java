@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//1234
 public class HelloApplication extends Application {
     public static final int MOVE = SizeConstants.MOVE;
     public static final int SIZE = SizeConstants.SIZE;
@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
     private static int top = 0;
     private static boolean game = true;
     private static Form nextObj = Controller.makeText(true);//makeRect->makeText
+    private static Form waitObj = Controller.waitingTextMake(true);
     private static int linesNo = 0;
     private long Frame = 1000000000;
     private static int scoreMultiplier = 1;
@@ -62,7 +63,10 @@ public class HelloApplication extends Application {
         level.setY(100);
         level.setX(XMAX + 5);
         level.setFill(Color.GREEN);
-        group.getChildren().addAll(scoretext, line, level);
+        Form wait = waitObj;
+
+
+        group.getChildren().addAll(scoretext, line, level, wait.a, wait.b, wait.c, wait.d);
 
         Form a = nextObj;
         group.getChildren().addAll(a.a, a.b, a.c, a.d);
@@ -94,7 +98,7 @@ public class HelloApplication extends Application {
                         over.setY(250);
                         over.setX(10);
                         group.getChildren().add(over);
-                        ScoreboardConnector.insertData("홍길동",score,"00:00:00",linesNo);
+                        ScoreboardConnector.insertData("홍길동", score, "00:00:00", linesNo);
                         game = false;
                     }
                     // Exit
@@ -113,8 +117,8 @@ public class HelloApplication extends Application {
         timer.start();
     }
 
-    private void drawGridLines(){
-        for(int x = 0; x<=XMAX / SIZE; x++){
+    private void drawGridLines() {
+        for (int x = 0; x <= XMAX / SIZE; x++) {
             Line line = new Line(x * SIZE, 0, x * SIZE, YMAX);
             line.setStroke(Color.LIGHTGRAY);
             group.getChildren().add(line);
@@ -125,6 +129,7 @@ public class HelloApplication extends Application {
             group.getChildren().add(line);
         }
     }
+
     private void moveOnKeyPress(Form form) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -142,6 +147,9 @@ public class HelloApplication extends Application {
                         break;
                     case UP:
                         MoveTurn(form);
+                        break;
+                    case SPACE:
+                        DirectMoveDown(form);
                         break;
                 }
             }
@@ -454,14 +462,16 @@ public class HelloApplication extends Application {
         if (lines.size() > 0)
             do {
                 for (Node node : pane.getChildren()) {
-                    if(node.getUserData()=="scoretext"||node.getUserData()=="level")//예외설정
+                    if (node.getUserData() == "scoretext" || node.getUserData() == "level" ||
+                            node.getUserData() == "waita" || node.getUserData() == "waitb" ||
+                            node.getUserData() == "waitc" || node.getUserData() == "waitd")//예외설정
                         continue;
                     if (node instanceof Text)
                         texts.add(node);
                 }
-                if(Frame > 150000000){
+                if (Frame > 150000000) {
                     Frame -= 50000000;
-                    scoreMultiplier ++;
+                    scoreMultiplier++;
                 }
                 score += 50 * scoreMultiplier;
                 linesNo++;
@@ -532,7 +542,6 @@ public class HelloApplication extends Application {
             moved = true; // 실제로 이동했으므로 true로 설정
             score += scoreMultiplier;
         }
-
         if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
                 || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
             // 여기서는 블록이 다음 위치로 이동할 수 없으므로, 현재 위치를 고정하고 새로운 블록을 생성합니다.
@@ -542,15 +551,44 @@ public class HelloApplication extends Application {
             MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
             RemoveRows(group);
             // 새 블록 생성
-            Form a = nextObj;
-            nextObj = Controller.makeText(true);
+            Form a = Controller.makeText(waitObj.getName(), true);
+            group.getChildren().removeAll(waitObj.a, waitObj.b, waitObj.c, waitObj.d);
+            waitObj = Controller.waitingTextMake(true);
             object = a;
-            group.getChildren().addAll(a.a, a.b, a.c, a.d);
+            group.getChildren().addAll(a.a, a.b, a.c, a.d, waitObj.a, waitObj.b, waitObj.c, waitObj.d);
             moveOnKeyPress(a);
             moved = false; // 이 경우에는 이동하지 않으므로 false
         }
+
+
         return moved; // 이동 여부를 반환
     }
+
+    private void DirectMoveDown(Form form) {
+        while (!(form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
+                || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form))){
+            form.a.setY(form.a.getY() + MOVE);
+            form.b.setY(form.b.getY() + MOVE);
+            form.c.setY(form.c.getY() + MOVE);
+            form.d.setY(form.d.getY() + MOVE);
+            // 실제로 이동했으므로 true로 설정
+            score += scoreMultiplier;
+            top = 0; // directmovedown 호출시 object 겹침 버그 방지용
+        }
+        MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
+        MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
+        MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
+        MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
+        RemoveRows(group);
+        Form a = Controller.makeText(waitObj.getName(), true);
+        group.getChildren().removeAll(waitObj.a, waitObj.b, waitObj.c, waitObj.d);
+        waitObj = Controller.waitingTextMake(true);
+        object = a;
+        group.getChildren().addAll(a.a, a.b, a.c, a.d, waitObj.a, waitObj.b, waitObj.c, waitObj.d);
+        moveOnKeyPress(a);
+
+    }
+
 
     private boolean moveA(Form form) {
         return (MESH[(int) form.a.getX() / SIZE][((int) form.a.getY() / SIZE) +1] == 1);
